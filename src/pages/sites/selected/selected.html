@@ -1,0 +1,41 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Selected</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content no-padding>
+ <!--<ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>-->
+        <ion-list>
+        <ion-item-sliding *ngFor="let site of items">
+          <ion-item text-wrap (click) = "showPlots(site.recordID)">
+            <ion-label>          
+              <h2 text-left>{{site.FullDesription()}}</h2>
+              <h4 text-left>{{site.address}}</h4>
+              <h4 *ngIf="site.postCode != ''" text-left>{{site.postCode}}</h4>
+            </ion-label>     
+          </ion-item>
+          <ion-item-options side="right">      
+            <button ion-button color="navbarColor" (click)="openModal(site.recordID)">
+              <ion-icon right name="information-circle"></ion-icon>
+              Details
+              </button>
+          </ion-item-options>
+
+          <ion-item-options side="left">
+            <button ion-button color="danger" (click)="removeSite(site.recordID)">
+              <ion-icon name="archive"></ion-icon>
+              Delete
+              </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+</ion-content>

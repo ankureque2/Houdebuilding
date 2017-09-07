@@ -1,0 +1,46 @@
+<!--
+  Generated template for the DetailsPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-toolbar color='navbarColor'>
+    <ion-title>Details</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="dismiss()">      
+       <ion-icon name="md-close"></ion-icon>
+     </button>   
+    </ion-buttons>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-list>
+  <ion-list-header>
+    <h2 color = "dark">  {{selectedSite.primaryName}} </h2>
+    </ion-list-header>
+      <ion-item item-text-wrap>
+        <ion-icon name="key" item-left ></ion-icon>
+          {{selectedSite.shortCode}}
+        </ion-item>
+      <ion-item item-text-wrap>
+        <ion-icon name="pin" item-left></ion-icon>          
+         <p>{{selectedSite.address}}</p>
+         <p>{{selectedSite.postCode}}</p>
+        </ion-item>
+      <ion-item item-text-wrap>
+        <ion-icon name="call" item-left></ion-icon>
+             <p>{{selectedSite.telephone}}</p>
+        </ion-item>
+      <ion-item item-text-wrap>
+        <ion-icon name="mail" item-left></ion-icon>
+         
+        <p>{{selectedSite.email}}</p>
+        </ion-item>  
+      <ion-item item-text-wrap>
+        <ion-icon name="time" item-left></ion-icon>
+            <p>{{selectedSite.progressDate | date}}</p>
+         </ion-item>      
+  </ion-list>
+</ion-content>

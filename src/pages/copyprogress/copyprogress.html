@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color='navbarColor'>
+    <ion-title>Copy Progress</ion-title>
+    <ion-buttons start>
+     <button ion-button icon-only (click)="dismiss()">      
+       <ion-icon name="md-close"></ion-icon>
+     </button>   
+    </ion-buttons>	
+   </ion-toolbar> 
+</ion-header>
+
+<ion-content>
+ <ion-list>
+        <ion-item no-padding text-wrap *ngFor="let plot of allPlots">        
+            <ion-label>
+              {{plot.primaryName}}             
+            </ion-label>   
+             <ion-toggle color="primary2" (ionChange)="plotSelected($event, plot)"></ion-toggle>          
+        </ion-item>
+      </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button full  color="primary2" (click)='showCopyQuestion()'>Copy Updated Progress</button>
+  </ion-toolbar>
+</ion-footer>

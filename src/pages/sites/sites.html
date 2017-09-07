@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color='navbarColor'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Sites</ion-title>
+  <!--<ion-buttons right>
+    <button ion-button royal>
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-buttons>-->
+  </ion-navbar>
+  <!--div class="bar bar-subheader item-input-inset" primary > 111 </div> -->
+ </ion-header>
+
+<!--ion-content> -->
+    <ion-tabs padding tabsPlacement ="top">
+      <!-- Indicates with tabsPage should handle each tab here -->
+      <ion-tab [root]="selectedPage" ionSelect= "getDownloadSites()" [rootParams]="tabParams" tabTitle="Saved" tabIcon="md-download"></ion-tab>
+      <ion-tab [root]="allPage"[rootParams]= "tabParams" tabTitle="All" tabIcon="home"></ion-tab>
+        
+    </ion-tabs> 

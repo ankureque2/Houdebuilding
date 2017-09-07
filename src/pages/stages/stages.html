@@ -1,0 +1,121 @@
+
+<ion-list margin-left="0" >
+  <ion-list-header no-padding no-margin>
+   <h1 text-left color="dark"> Construction Stage Headers</h1>
+  </ion-list-header>
+  <ion-item-group no-margin no-padding *ngFor="let header of headers">  
+    <ion-item-divider no-margin no-padding secondary2> 
+      {{header.title}}
+       <!--<h2 text-left>{{header.title}}</h2>-->
+        <button ion-button clear small item-right item-top  (click)="toggleDetails(header)"><ion-icon color = "navbarColor" [name]="header.icon"></ion-icon></button>
+    <!--<ion-row>
+     <ion-col width-90>
+      
+     </ion-col>
+     <ion-col width-10>
+       <button ion-button clear small item-right item-top  (click)="toggleDetails(header)"><ion-icon color = "navbarColor" [name]="header.icon"></ion-icon></button>
+     </ion-col>
+   </ion-row>-->
+    </ion-item-divider>
+  <!-- <hr *ngIf="header.showDetails">  -->
+  <div  *ngIf="header.showDetails">  
+    <ion-label margin-left padding-left *ngIf="header.noStages"><i>No Stages to display</i></ion-label>
+    <div  *ngFor="let stage of filteredProgress | stageFilter:{headerId:header.stageID}">
+       <ion-grid padding-top>
+      <!--<ion-grid padding-top [hidden]="(userSettings.HideCompletedStages === true && stage.currentProgress === 100) || (userSettings.ShowStagesWithAppmeasureItemsOnly === true && stage.AppMeasureCount === 0)">-->
+        <!--<div item-content fullscreen parallax-header>-->
+         <ion-row>
+           <!--<ion-col width-90>             
+           <ion-label no-padding no-margin color="dark"> 
+                <h2 text-left text-wrap> {{stage.StageName}}</h2> 
+            </ion-label>
+            </ion-col>
+            <ion-col align-self-start width-10>
+                <button ion-button clear icon-only (click) = "showAppMeasureItems(stage)">
+                 <ion-icon color="navbarColor" name="ios-more"></ion-icon>
+                 </button>
+            </ion-col>-->
+             <ion-col width-50>{{stage.StageName}}</ion-col>
+              <ion-col width-15>{{stage.currentProgress}}</ion-col>
+              <ion-col width-20>
+                <ion-input no-padding no-margin type="number"  max="999" min="0" id="{{stage.progressID}}" clearOnEdit [disabled]="!(stage.HasProgress)" [(ngModel)]="stage.newProgress" (change)="onProgressValueEntered(stage, $event.target.value)"></ion-input>
+              </ion-col>
+            <ion-col width-15 padding-top>
+              <br/>
+           <ion-fab mini right middle>
+              <button ion-fab mini color="navbarColor"><ion-icon name="attach"></ion-icon></button>
+              <ion-fab-list side="left">
+                <button ion-fab mini (click) = "takePicture(stage)"><ion-icon name="camera"></ion-icon></button>
+                <button ion-fab mini (click) = "openGallery(stage)"><ion-icon name="images"></ion-icon></button>
+                <button ion-fab mini (click) = "showSelectedImages(stage)"> <ion-icon name="link"></ion-icon></button>
+                <button ion-fab mini (click) = "takeNotes(stage.progressID)"><ion-icon name="text"></ion-icon></button>
+               </ion-fab-list>
+            </ion-fab>          
+          </ion-col>
+         </ion-row> 
+           <!--<ion-item no-padding no-margin no-lines>
+             <ion-row no-padding no-margin>
+               <ion-col no-padding no-margin>Current Progress (%)</ion-col>
+               <ion-col no-padding margin-left>{{stage.currentProgress}}</ion-col>
+             </ion-row>
+            <ion-label color="dark">Current Progress (%)</ion-label>        
+            <h2>{{stage.currentProgress}}</h2   
+           </ion-item>           -->
+        <!-- 
+          <ion-input color="dark" [disabled]="true" value="{{stage.currentProgress}}"></ion-input> 
+           -->
+       <!--/ion-card-content-->          
+          <!--<ion-item no-lines no-padding no-margin>        
+          <ion-label color="dark" left>New Progress   (%)</ion-label>                              
+              <ion-input no-padding no-margin type="number"  max="999" min="0" id="{{stage.progressID}}" clearOnEdit margin-left [disabled]="!(stage.HasProgress)" [(ngModel)]="stage.newProgress" (change)="onProgressValueEntered(stage, $event.target.value)"></ion-input>                                             
+              <button ion-button margin-left outline item-right [disabled]="!(stage.HasProgress)" (click)="increaseProgressValue(stage)">+</button>
+              <button ion-button outline item-right [disabled]="!(stage.HasProgress)" (click)="decreaseProgressValue(stage)">-</button>  
+          </ion-item>-->
+       <ion-row>
+         <ion-col width-100>
+        <ion-segment color="primary2">
+            <ion-segment-button small value="A" [disabled]="!(stage.AppMeasureCount> 0)" (ionSelect)="showAppMeasureItems(stage)">
+             A      
+            </ion-segment-button>
+          <ion-segment-button value="25" (ionSelect)="changeProgressValue(stage,25)">
+            25%        
+          </ion-segment-button>
+          <ion-segment-button value="50" (ionSelect)="changeProgressValue(stage,50)">
+            50%
+          </ion-segment-button>
+          <ion-segment-button  value="75" (ionSelect)="changeProgressValue(stage,75)">
+            75%
+          </ion-segment-button>
+          <ion-segment-button value="100" (ionSelect)="changeProgressValue(stage,100)">
+            100%
+          </ion-segment-button>
+           <ion-segment-button small value="-" (ionSelect)="decreaseProgressValue(stage)">
+              -
+            </ion-segment-button>
+            <ion-segment-button small value="+" (ionSelect)="increaseProgressValue(stage)">
+              +
+            </ion-segment-button>
+        </ion-segment> 
+         </ion-col> 
+       </ion-row>      
+        <!--<br/>
+         <ion-row padding-top margin-top>
+           <br/>
+          <ion-col no-padding no-margin>
+            <ion-fab no-padding no-margin right bottom>
+              <button [disabled]="!(stage.HasProgress)" ion-fab mini color="navbarColor"><ion-icon name="attach"></ion-icon></button>
+              <ion-fab-list side="left">
+                <button ion-fab  (click)="takePicture(stage.progressID)"><ion-icon name="camera"></ion-icon></button>
+                <button ion-fab (click) = "openGallery(stage.progressID)"><ion-icon name="images"></ion-icon></button>
+                <button ion-fab (click) = "showSelectedImages(stage.progressID)" > <ion-icon name="link"></ion-icon></button>
+                <button ion-fab  (click)="takeNotes(stage.progressID)"><ion-icon name="text"></ion-icon></button>
+               </ion-fab-list>
+            </ion-fab>          
+          </ion-col>              
+       </ion-row>-->
+      </ion-grid>
+      <!--</ion-item-divider>    -->
+    </div>
+  </div>   
+ </ion-item-group> 
+</ion-list>

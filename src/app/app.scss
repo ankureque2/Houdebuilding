@@ -1,0 +1,66 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+@import "../pages/stages/stages";
+ion-segment-button{
+  //max-width: 25px;
+  border-style: solid;
+  border-width: $segment-button-ios-border-width;
+  border-bottom-style: solid;
+  border-radius:  4px;
+  max-width: $segment-button-ios-toolbar-button-max-width;
+  height: 2.8rem;
+  font-size: $segment-button-ios-toolbar-font-size;
+ // line-height: $segment-button-ios-line-height; 
+  background-color: $toolbar-md-active-color
+}
+
+ion-card {
+            background-color: #fff;
+            width: 100%;
+            margin: 0;
+            margin-bottom: 25px;
+            position: relative;
+            top: -30px;
+        }
+  ion-card:last-of-type {
+            margin-bottom: 0 !important;
+        }
+
+.fab[mini] {     
+    width: 30px;
+    height: 30px;
+    line-height: 30px;    
+}
+
+.ion-input
+{
+  position: relative;
+  display: block;
+  border-style: solid; 
+ // border-bottom: 1px solid #cfcfcf!important;
+  border-width: thin;
+  flex: 1;
+}
+
+// ion-input {
+// border: 1px solid #cfcfcf!important;
+// }
+
+.swiper-slide {
+    overflow-y: scroll;
+    display: block;
+}

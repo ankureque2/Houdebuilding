@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar color='navbarColor'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+      <ion-buttons end>
+     <button ion-button clear (click)="showOptions()">
+       <ion-icon name="settings"></ion-icon>
+     </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding  class="register">   
+ <div *ngIf="!connected">
+    <br/> 
+  <p>
+    Type the 9 character activation code below to get started using Housebuilding mobile app.
+  </p>
+  <br/>
+  <br/>
+  <br/>
+    <!--<ion-input type="text" [textMask]="{mask: masks.activecode}" [(ngModel)]='activecode' placeholder="Activation Code"></ion-input>-->
+    <ion-input type="text"  [(ngModel)]='activecode' placeholder="Activation Code"></ion-input>
+    <br/>
+    <br/>
+  <button ion-button block color="primary2" [disabled]="disableSubmit" (click)="registerApp()">Activate</button> 
+  </div>
+ <div *ngIf="connected">
+    <p>
+         Welcome to Housebuilding mobile app  
+    </p>   
+     <br/>
+     <br/>
+     <br/>
+     <br/>
+    <!--<p>You are connected to {{regData.customername}} housebuilding Application</p>   
+    <p>The Instance of your Housebuilding server is  {{regData.instancedescription}}</p>     
+    <p>Your activation code is  {{activecode}}</p>     -->
+      <br/>
+    <button ion-button full color="primary2" (click)="gotoSitesPage()">
+       <ion-icon name="home"> Sites</ion-icon>
+   </button>
+    <br/>
+     <br/>
+  <button ion-button full (click)="showDeregisterQuestion()" color="primary2">
+    <ion-icon name="remove-circle"> DeActivate</ion-icon>
+  </button>
+
+   <!--<button ion-button (click)="dropAppItems()">
+    <ion-icon name="remove-circle"> Remove Apps</ion-icon>
+   </button>-->
+   
+  <!--button ion-button (click)="DeleteStageTables()">
+    <ion-input type="text" [textMask]="{mask: masks.activecode}" [(ngModel)]='activecode'></ion-input>
+
+    <ion-icon name="remove-circle"> Remove Stages</ion-icon>
+  <button ion-button (click)="getAllPlots()">
+       <ion-icon name="home"> alter attachments</ion-icon>
+   </button>
+
+  </button--> 
+ 
+ </div>
+</ion-content>
+<ion-footer>
+  Version {{appVer}}
+</ion-footer>

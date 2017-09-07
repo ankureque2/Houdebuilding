@@ -1,0 +1,73 @@
+<ion-header> 
+  <ion-toolbar color='navbarColor'>
+    <ion-title text-wrap>Site Progress Results</ion-title>
+     <ion-buttons start>
+     <button ion-button icon-only (click)="dismiss()">      
+       <ion-icon name="md-close"></ion-icon>
+     </button>   
+    </ion-buttons>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-content padding-top>  
+<ion-label *ngIf="hasProgress"> Site Progress submitted on {{progressDate | date:'medium'}}.
+</ion-label>
+<ion-label *ngIf="!hasProgress"> No Progress has been submitted for this site.
+</ion-label>
+ <div  *ngIf="showprogressDiv">
+   <!--<ion-item  text-wrap  padding-top>
+   <ion-label text-wrap no-padding no-margin *ngIf="showprogressDiv">
+             Site Progress Submitted with following warnings.
+    </ion-label>  
+    </ion-item>-->
+    <ion-list-header *ngIf="showprogressDiv" text-wrap no-padding no-margin>
+     Site Progress Submitted with following warnings.
+    </ion-list-header>   
+    <ion-list>         
+        <!--<ion-list-header text-wrap no-padding no-margin>           
+                Site Progress Submitted with following warnings.   
+        </ion-list-header>-->
+         <ion-item text-wrap no-padding *ngFor="let plot of siteProgressResult.BudgetResult">
+            <ion-row no-padding no-margin>
+                <ion-col>
+                    {{plot.PlotName}}
+                </ion-col>
+                 <ion-col col-auto>
+                    {{plot.StageName}}
+                </ion-col>
+                  <!--<ion-col>
+                    {{plot.ActualProgress}}
+                </ion-col>-->
+            </ion-row>
+            <ion-row>
+                 {{plot.Message}}
+            </ion-row>
+         </ion-item>
+    </ion-list>
+    <ion-list>
+         <ion-item text-wrap no-padding no-margin *ngFor="let app of siteProgressResult.AppmeasureItemsResult">
+              <ion-row no-padding no-margin>
+                <ion-col width-40>
+                    {{app.Description}}
+                </ion-col>
+                 <ion-col width-20>
+                    {{app.PlotName}}
+                </ion-col>   
+                 <ion-col width-40>
+                    {{app.StageName}}
+                </ion-col>                 
+            </ion-row>
+            <ion-row>
+                {{app.Message}}
+            </ion-row>
+         </ion-item>
+    </ion-list>
+    </div>    
+  </ion-content>
+<ion-footer>
+  <ion-toolbar>
+   <button ion-button no-padding no-margin block color="primary2" (click)='dismiss()'>          
+       Close
+    </button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,63 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>All</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+  <!--ion-searchbar primary (ionInput)="getSites($event)"></ion-searchbar-->
+  
+   <!--ion-list>
+    <ion-item inset text-wrap *ngFor="let site of sitesList">
+    <ion-label>
+    <button ion-item dark no-lines clear (click) = "showPlots(site.recordID)">
+     <h2 text-left text-wrap> {{site.primaryName}}</h2>
+     <h4 text-left text-wrap>{{site.address}}</h4>
+     <h4 text-left>{{site.postCode}}</h4>
+    </button>
+    </ion-label>
+          
+     <div item-right class='row'>
+       <div class="col-xs-12 col-sm-4">
+        <ion-toggle checked="{{site.Selected}}" (ionChange)="onSelected($event, site.recordID)"></ion-toggle>
+       </div>
+       <div class="col-xs-12 col-sm-4">
+          <button ion-button color="secondary" clear is-active="false" padding-vertical (click)="openModal(site.recordID)">
+          <ion-icon  name="information-circle"></ion-icon>    
+         </button>   
+       </div>                
+     </div>      
+    </ion-item>
+   </ion-list-->
+ <!--<button ion-button (click) = "getSiteByID(50009)">Get Site name</button>-->
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+    <ion-list>
+      <ion-item-sliding *ngFor="let site of filteredList">
+        <ion-item text-wrap (click) = "showPlots(site.recordID)">
+          <ion-label>
+            <h2 text-left>{{site.FullDesription()}}</h2>    
+            <h4 text-left>{{site.address}}</h4>
+            <h4 *ngIf="site.postCode != ''" text-left>{{site.postCode}}</h4>
+          </ion-label>     
+        </ion-item>
+        <ion-item-options side="right">      
+          <button ion-button color="primary" (click)="openModal(site.recordID)">
+            <ion-icon right name="information-circle"></ion-icon>
+            Details
+            </button>           
+        </ion-item-options>        
+      </ion-item-sliding>    
+    <ion-label margin-left padding-left *ngIf="noSites"><i>No Sites to display</i></ion-label>
+    </ion-list>
+</ion-content>
+<ion-footer>
+ <ion-searchbar  [(ngModel)]="searchQuery" (ionInput)="getSites($event)"></ion-searchbar>
+</ion-footer>

@@ -1,0 +1,105 @@
+<!--
+  Generated template for the Stagelist page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color='navbarColor'>
+    <ion-title>{{plot.primaryName}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="showFilter($event)">
+      <ion-icon name="ios-funnel"></ion-icon>
+      </button>
+    <button ion-button icon-only (click)="showPlotOptions($event)">
+      <ion-icon name="more"></ion-icon>
+    </button>
+  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item no-padding no-margin>
+    <h2>Construction Stages</h2>
+  </ion-item> 
+<ion-list>
+  <div *ngFor='let stage of filteredStageProgress'>    
+        <ion-grid>
+          <ion-row>
+          <ion-col width-50>{{stage.StageName}}</ion-col>
+          <ion-col width-15>{{stage.currentProgress}}</ion-col>
+          <ion-col width-20>
+            <ion-input no-padding no-margin type="number"  max="999" min="0" id="{{stage.progressID}}" clearOnEdit [disabled]="!(stage.HasProgress)" [(ngModel)]="stage.newProgress" (change)="onProgressValueEntered(stage, $event.target.value)"></ion-input>
+          </ion-col>
+          <ion-col width-15 padding-top>
+            <br/>
+           <ion-fab mini right middle>
+              <button [disabled]="!(stage.HasProgress)" ion-fab mini color="navbarColor"><ion-icon name="attach"></ion-icon></button>
+              <ion-fab-list side="left">
+                <button ion-fab mini (click) = "checkCameraPermissions(stage)"><ion-icon name="camera"></ion-icon></button>
+                <button ion-fab mini (click) = "openGallery(stage)"><ion-icon name="images"></ion-icon></button>
+                <button ion-fab mini (click) = "showSelectedImages(stage)"> <ion-icon name="link"></ion-icon></button>
+                <button ion-fab mini (click) = "takeNotes(stage.progressID)"><ion-icon name="text"></ion-icon></button>
+               </ion-fab-list>
+            </ion-fab>          
+          </ion-col>
+          </ion-row >
+         <ion-row>
+           <!--<ion-col width-10>
+             <button no-padding-top no-margin-top small color="primary2" ion-button (click)="decreaseProgressValue(stage)">A</button>
+             
+           </ion-col>-->
+          <ion-col width-100 >
+          <ion-segment no-padding-left no-margin-left color="primary2">
+           <ion-segment-button small value="A" [disabled]="!(stage.AppMeasureCount> 0)" (ionSelect)="showAppMeasureItems(stage)">
+             A      
+            </ion-segment-button>
+            <ion-segment-button small value="25" (ionSelect)="changeProgressValue(stage,25)">
+              25%        
+            </ion-segment-button>
+            <ion-segment-button small value="50" (ionSelect)="changeProgressValue(stage,50)">
+              50%
+            </ion-segment-button>
+            <ion-segment-button small  value="75" (ionSelect)="changeProgressValue(stage,75)">
+              75%
+            </ion-segment-button>
+            <ion-segment-button small value="100" (ionSelect)="changeProgressValue(stage,100)">
+              100%
+            </ion-segment-button>
+            <ion-segment-button small value="-" (ionSelect)="decreaseProgressValue(stage)">
+              -
+            </ion-segment-button>
+            <ion-segment-button small value="+" (ionSelect)="increaseProgressValue(stage)">
+              +
+            </ion-segment-button>
+          </ion-segment>
+          </ion-col>
+          <!--<ion-col width-20>
+              <button small color="primary2" ion-button outline [disabled]="!(stage.HasProgress)" (click)="decreaseProgressValue(stage)">-</button>
+              <button small color="primary2" ion-button  outline [disabled]="!(stage.HasProgress)" (click)="increaseProgressValue(stage)">+</button>              
+          </ion-col>-->
+         </ion-row> 
+        
+  </ion-grid>
+  </div>
+ 
+</ion-list>
+</ion-content>
+
+<ion-footer>  
+  <ion-toolbar *ngIf="showFooter">
+    <ion-buttons left>
+     <button ion-button  color='navbarColor' (click)="showPrevPlot()" outline icon-left>
+       <ion-icon name="ios-arrow-back-outline"></ion-icon>
+        Prev.
+    </button>  
+   </ion-buttons>
+     <ion-buttons right>
+      <button ion-button color='navbarColor' (click)="showNextPlot()" outline icon-right>
+        Next
+        <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+      </button>
+     </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+

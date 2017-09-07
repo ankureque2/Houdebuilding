@@ -1,0 +1,125 @@
+<!--
+  Generated template for the Appmeasureitems page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+ <ion-navbar color='navbarColor'>
+    <ion-title>Appmeasure Items</ion-title>
+    <ion-buttons start>
+     <button ion-button icon-only (click)= "presentActionSheet()">
+        <ion-icon name="more"></ion-icon>
+     </button> 
+     <button ion-button icon-only (click)="dismiss()">      
+       <ion-icon name="md-close"></ion-icon>
+     </button>     
+    </ion-buttons>
+   </ion-navbar> 
+</ion-header>
+
+<ion-content padding-top margin-top>
+  <ion-card *ngFor="let item of appItems">
+    <ion-card-header no-padding no-margin>
+     <ion-row no-padding no-margin>
+       <ion-col width-90>
+      <ion-label no-padding no-margin> {{item.Description}}</ion-label>
+       </ion-col>
+       <!--<ion-col width-30>
+        <ion-label no-padding no-margin>Unit: {{item.Unit}}</ion-label>
+       </ion-col>-->
+         <ion-col width-10>
+           <button ion-button clear small item-right no-padding no-margin icon-only (click)="takeNotes(item.RecordID)"><ion-icon  color="dark" name="text"></ion-icon></button>    
+         </ion-col>
+     </ion-row>   
+    </ion-card-header>
+    <ion-card-content no-padding no-margin>
+    <ion-row no-padding no-margin>
+        <ion-col width-20>
+        </ion-col>
+          <ion-col width-25>
+            Current
+        </ion-col>
+          <ion-col width-30>
+            New
+        </ion-col>
+        <ion-col margin-left width-25>
+          Unit/Req
+        </ion-col>
+    </ion-row>
+    <ion-row no-padding no-margin>
+        <ion-col width-20>
+          MOS
+        </ion-col>
+          <ion-col width-25>
+             {{item.CurrentMOSQty}}
+        </ion-col>
+          <ion-col width-30>
+             <ion-input no-padding no-margin type="number" [(ngModel)]="item.NewMOSQty" (change)="changeMOSQty(item, $event.target.value)"></ion-input>
+        </ion-col>
+         <ion-col margin-left width-25>
+            {{item.Unit}}
+        </ion-col>  
+    </ion-row>
+       <ion-row no-padding no-margin>
+        <ion-col width-20>
+          Progress
+        </ion-col>
+          <ion-col width-25>
+             {{item.CurrentProgressQty}}
+        </ion-col>
+          <ion-col width-30>
+             <ion-input no-padding no-margin type="number" [(ngModel)]="item.NewProgressQty" (change)="changeProgressQty(item, $event.target.value)"></ion-input>
+        </ion-col>
+        <ion-col margin-left width-25>
+           {{item.RequiredQty}}
+        </ion-col>  
+    </ion-row>
+      <!--<ion-row no-padding no-margin>
+        <ion-col width-30>
+        <ion-label>Required Qty:</ion-label>
+        </ion-col>
+        <ion-col width-20>
+          <ion-label>{{item.RequiredQty}}</ion-label>
+        </ion-col>            
+        <ion-col width-30>
+        <ion-label>Unit:</ion-label>
+        </ion-col>
+        <ion-col width-20>
+        <ion-label>{{item.Unit}}</ion-label> 
+        </ion-col>
+      </ion-row>
+    <ion-row no-padding no-margin>
+        <ion-col width-30>
+          Current MOS Qty:
+        </ion-col>
+        <ion-col width-20>
+          {{item.CurrentMOSQty}}
+        </ion-col>
+        <ion-col width-30>
+          New MOS Qty:
+        </ion-col>
+        <ion-col width-20>
+        <ion-input no-padding no-margin type="number" [(ngModel)]="item.NewMOSQty" (change)="changeMOSQty(item, $event.target.value)"></ion-input>
+        </ion-col>
+    </ion-row>
+    <ion-row no-padding no-margin>
+        <ion-col width-30>
+          Current Progress Qty:
+        </ion-col>
+        <ion-col width-20>
+          {{item.CurrentProgressQty}}
+        </ion-col>
+        <ion-col width-30>
+          New Progress Qty:
+        </ion-col>
+        <ion-col width-20>
+        <ion-input no-padding no-margin type="number" [(ngModel)]="item.NewProgressQty" (change)="changeProgressQty(item, $event.target.value)"></ion-input>
+        </ion-col>
+    </ion-row>-->
+    <!--<ion-item>      
+      <button ion-button clear small item-right icon-only (click)="takeNotes(item.RecordID)"><ion-icon  color="dark" name="text"></ion-icon></button>     
+    </ion-item>-->
+    </ion-card-content>
+ </ion-card>
+</ion-content>

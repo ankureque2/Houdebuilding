@@ -1,0 +1,23 @@
+<ion-header>
+ <ion-toolbar color='navbarColor'>
+    <ion-title>Selected Images</ion-title>
+    <ion-buttons start>
+     <button ion-button icon-only (click)="dismiss()">      
+       <ion-icon name="md-close"></ion-icon>
+     </button>   
+    </ion-buttons>
+		<ion-buttons end>
+		<button ion-button *ngIf= "(selectedImages.length > 0)">delete</button>
+		</ion-buttons>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-grid>
+	  <ion-row *ngFor="let row of grid">
+	    <ion-col width-50 *ngFor="let file_uri of row">
+		    <img src="{{file_uri}}" ng-click="selectImage(file_uri)"/>				
+	    </ion-col>
+	  </ion-row>
+	</ion-grid>	
+</ion-content>

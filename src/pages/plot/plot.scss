@@ -1,0 +1,42 @@
+.plot {
+  .stageheaders {
+    .fab[mini] {     
+    width: 30px;
+    height: 30px;
+    line-height: 30px;    
+}  
+      ion-card {    
+      padding-left: 0;
+      padding-right: 0;
+      position: relative;
+    }
+ 
+    ion-icon  {
+      font-size: 1.8rem;
+      padding: 0;
+      text-align: center;
+      position: absolute;
+      right: 10px;
+      top: 3px;
+      &:before {
+        font-weight: bold;
+      }
+    }
+    
+    
+    .no-padding {
+    padding: 0px !important;
+}
+  } 
+  .fab[mini] {     
+    width: 30px;
+    height: 30px;
+    line-height: 30px;    
+} 
+ 
+}
+
+ ion-input {
+      border: 1px solid #cfcfcf!important;
+      }
+
